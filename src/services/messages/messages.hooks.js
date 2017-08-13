@@ -1,5 +1,5 @@
+const publish = require('../../hooks/publish');
 const subscribe = require('../../hooks/subscribe');
-const geoadd = require('../../hooks/geoadd');
 
 module.exports = {
   before: {
@@ -14,9 +14,9 @@ module.exports = {
 
   after: {
     all: [],
-    find: [],
+    find: [ subscribe() ],
     get: [],
-    create: [ geoadd(), subscribe() ],
+    create: [ publish() ],
     update: [],
     patch: [],
     remove: []
