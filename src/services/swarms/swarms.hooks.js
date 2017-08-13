@@ -1,4 +1,7 @@
-
+const redis = require('../../redis/client');
+const { pub, sub } = require('../../redis/pub-sub.js');
+const subscribe = require('../../hooks/subscribe');
+const geoadd = require('../../hooks/geoadd');
 
 module.exports = {
   before: {
@@ -15,7 +18,7 @@ module.exports = {
     all: [],
     find: [],
     get: [],
-    create: [],
+    create: [ geoadd(), subscribe() ],
     update: [],
     patch: [],
     remove: []

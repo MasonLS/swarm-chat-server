@@ -38,7 +38,9 @@ app.use('/', feathers.static(app.get('public')));
 app.configure(hooks());
 app.configure(mongodb);
 app.configure(rest());
-app.configure(socketio());
+
+// Configure socketio with custom chat events
+app.configure(socketio(require('./custom-event-config')));
 
 // Configure other middleware (see `middleware/index.js`)
 app.configure(middleware);
